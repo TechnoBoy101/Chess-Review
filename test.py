@@ -6,9 +6,11 @@ import time
 
 # Set up options for headless Chrome
 chrome_options = Options()
-chrome_options.add_argument("--headless")  # Run headless
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--headless")  # Run in headless mode
+chrome_options.add_argument("--no-sandbox")  # Avoid sandboxing issues
+chrome_options.add_argument("--disable-dev-shm-usage")  # Workaround for low-memory environments
+chrome_options.add_argument("--disable-gpu")  # Disable GPU hardware acceleration
+chrome_options.add_argument("--remote-debugging-port=9222")  # For debugging purposes
 
 # Use webdriver-manager to automatically download and configure ChromeDriver
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
